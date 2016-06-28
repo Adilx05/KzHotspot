@@ -1,0 +1,22 @@
+﻿<controls:MetroWindow x:Class="KzHotspot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KzHotspot"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        mc:Ignorable="d"
+        Title="Kz Hotspot" Height="226" Width="339" ResizeMode="CanMinimize"
+                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderThickness="1"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      Loaded="MainWindow_OnLoaded"
+                      >
+    <Grid>
+        <Button x:Name="OnOffBt" Content="Başlat" HorizontalAlignment="Left" Margin="118,143,0,0" VerticalAlignment="Top" Width="75" Click="OnOffBt_OnClick" />
+        <TextBlock x:Name="SSid" HorizontalAlignment="Left" Margin="73,40,0,0" TextWrapping="Wrap" Text="SsId :" VerticalAlignment="Top"/>
+        <TextBlock x:Name="Parola" HorizontalAlignment="Left" Margin="62,73,0,0" TextWrapping="Wrap" Text="Parola :" VerticalAlignment="Top"/>
+        <TextBox x:Name="IdTx" HorizontalAlignment="Left" Height="23" Margin="171,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="KzHotspot"/>
+        <TextBox x:Name="SifreTx" HorizontalAlignment="Left" Height="23" Margin="171,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="kzhotspot123"/>
+    </Grid>
+</controls:MetroWindow>
