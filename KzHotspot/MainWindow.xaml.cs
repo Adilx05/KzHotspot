@@ -37,14 +37,16 @@ namespace KzHotspot
             Islem.StartInfo.Arguments = "netsh wlan set hostednetwork mode=allow ssid="+IdTx.Text+" key="+SifreTx;
             Islem.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             Islem.Start();
-            Islem.WaitForExit();
+            Islem.WaitForExit(2000);
+            Islem.Close();
             if (OnOffBt.Content.ToString() == "Başlat")
             {
                 Baslat.StartInfo.FileName = "cmd.exe";
                 Baslat.StartInfo.Arguments = "netsh wlan start hostednetwork";
                 Baslat.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 Baslat.Start();
-                Baslat.WaitForExit();
+                Baslat.WaitForExit(2000);
+                Baslat.Close();
                 OnOffBt.Content = "Durdur";
                 this.ShowMessageAsync("Bilgi", "Hotspot Açıldı");
             }
@@ -54,7 +56,8 @@ namespace KzHotspot
                 Baslat.StartInfo.Arguments = "netsh wlan stop hostednetwork";
                 Baslat.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                 Baslat.Start();
-                Baslat.WaitForExit();
+                Baslat.WaitForExit(2000);
+                Baslat.Close();
                 OnOffBt.Content = "Başlat";
                 this.ShowMessageAsync("Bilgi", "Hotspot Kapatıldı");
             }
@@ -71,7 +74,7 @@ namespace KzHotspot
             Baslangic.StartInfo.Arguments = "netsh wlan stop hostednetwork";
             Baslangic.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             Baslangic.Start();
-            Baslangic.WaitForExit();
+            Baslangic.Close();
 
             if (Registry.CurrentUser.OpenSubKey("Software")?.OpenSubKey("KzSoftware")?.GetValue("SSID").ToString() != null)
             {
