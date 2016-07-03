@@ -19,8 +19,8 @@
         <TextBlock x:Name="Parola" HorizontalAlignment="Left" Margin="62,73,0,0" TextWrapping="Wrap" Text="Parola :" VerticalAlignment="Top"/>
         <TextBox x:Name="IdTx" HorizontalAlignment="Left" Height="23" Margin="171,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="KzHotspot"/>
         <TextBox x:Name="SifreTx" HorizontalAlignment="Left" Height="23" Margin="171,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="kzhotspot123"/>
-        <Button x:Name="KontrolBt" Content="Kontrol Et" HorizontalAlignment="Left" Margin="18,140,0,0" VerticalAlignment="Top" Width="78" Click="KontrolBt_OnClick"/>
-        <TextBlock x:Name="KontrolTx" HorizontalAlignment="Left" Margin="115,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="75" TextDecorations="Underline" TextAlignment="Center" FontWeight="Bold"/>
+        <Button x:Name="KontrolBt" Content="Uyumluluk Kontrol Et" HorizontalAlignment="Left" Margin="3,140,0,0" VerticalAlignment="Top" Width="136" Click="KontrolBt_OnClick"/>
+        <TextBlock x:Name="KontrolTx" HorizontalAlignment="Left" Margin="138,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="25" Width="75" TextDecorations="Underline" TextAlignment="Center" FontWeight="Bold"/>
     </Grid>
 
 </controls:MetroWindow>

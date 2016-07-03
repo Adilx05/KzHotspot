@@ -98,7 +98,7 @@ namespace KzHotspot
             try
             {
                 var guncelleme = wc.DownloadString("https://raw.githubusercontent.com/Adilx05/KzHotspot/master/version.txt");
-                if (guncelleme != "103")
+                if (guncelleme != "104")
                 {
                     using (var client = new WebClient())
                     {
@@ -156,6 +156,7 @@ namespace KzHotspot
             kontrol.StartInfo.RedirectStandardOutput = true;
             kontrol.StartInfo.FileName = "cmd.exe";
             kontrol.StartInfo.Arguments = "/C netsh wlan show drivers";
+            kontrol.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             kontrol.Start();
             string cikti = kontrol.StandardOutput.ReadToEnd();
             kontrol.WaitForExit();
