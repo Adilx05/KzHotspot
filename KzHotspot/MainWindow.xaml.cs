@@ -21,8 +21,6 @@ namespace KzHotspot
             InitializeComponent();
         }
 
-        private string _v = 103.ToString();
-
         private void OnOffBt_OnClick(object sender, RoutedEventArgs e)
         {
            Process islem = new Process();
@@ -71,11 +69,13 @@ namespace KzHotspot
             }; //giriş kontrol
             baslangic.Start();
             baslangic.Close();
+
             Process sil = new Process();
             sil.StartInfo.FileName = "cmd.exe";
             sil.StartInfo.Arguments = "/C RMDIR \"Temp\" /S /Q ";
             sil.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             sil.Start();
+
             Process sil2 = new Process();
             sil2.StartInfo.FileName = "cmd.exe";
             sil2.StartInfo.Arguments = "/C DEL KzHotspot.zip /S /Q";
@@ -94,66 +94,58 @@ namespace KzHotspot
             }
 #region Güncelleme
             var wc = new WebClient {Proxy = null};
+
             try
             {
-                var guncelleme =
-                    wc.DownloadString("https://raw.githubusercontent.com/Adilx05/KzHotspot/master/version.txt");
-                if (guncelleme != _v)
+                var guncelleme = wc.DownloadString("https://raw.githubusercontent.com/Adilx05/KzHotspot/master/version.txt");
+                if (guncelleme != "102")
                 {
-
                     using (var client = new WebClient())
                     {
-                        var controller = await this.ShowProgressAsync("Lütfen Bekleyin","Güncelleme İndiriliyor");
-                        client.DownloadFile("https://github.com/Adilx05/KzHotspot/raw/master/KzHotspot/Bin/Debug/KzHotspot.zip","KzHotspot.zip");
+                        var controller = await this.ShowProgressAsync("Lütfen Bekleyin", "Güncelleme İndiriliyor");
+                        client.DownloadFile(
+                            "https://github.com/Adilx05/KzHotspot/raw/master/KzHotspot/Bin/Debug/KzHotspot.zip",
+                            "KzHotspot.zip");
                         client.DownloadFileCompleted += Client_DownloadFileCompleted;
                         string cikarilacak = "KzHotspot.zip";
                         using (ZipFile zip1 = ZipFile.Read(cikarilacak))
                         {
                             foreach (ZipEntry s in zip1)
                             {
-                                s.Extract("Temp",ExtractExistingFileAction.OverwriteSilently);
+                                s.Extract("Temp", ExtractExistingFileAction.OverwriteSilently);
                             }
                         }
                         await controller.CloseAsync();
                     }
-
                     await this.ShowMessageAsync("Bilgi", "Güncelleme Tamamlandı Lütfen Programı Yeniden Başlatın");
-
                 }
+                
+
+
             }
             catch (Exception ex)
             {
                 await this.ShowMessageAsync("Bilgi", "Güncelleme Dosyalarına Ulaşılamadı. Lütfen İnternet Bağlantınızı Kontrol Edin!");
             }
 
-
+           
             #endregion Güncelleme
         }
 
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            
-
+            //Gereksiz
         }
 
 
         private void MainWindow_OnClosed(object sender, EventArgs e)
-        {
-            
+        { 
             Process tasi = new Process();
-          //  Process sil = new Process();
 
             tasi.StartInfo.FileName = "cmd.exe";
             tasi.StartInfo.Arguments = "/C XCOPY Temp\\* /y";
             tasi.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             tasi.Start();
-
-         /*   sil.StartInfo.FileName = "cmd.exe";
-            sil.StartInfo.Arguments = "/C RMDIR \"Temp\" /S /Q ";
-            sil.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-            sil.Start();*/
-
-
         }
     }
 
