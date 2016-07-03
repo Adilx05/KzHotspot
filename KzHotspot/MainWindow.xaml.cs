@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Xml;
 using Ionic.Zip;
@@ -29,7 +30,6 @@ namespace KzHotspot
             islem.StartInfo.Arguments = "/C netsh wlan set hostednetwork mode=allow ssid="+IdTx.Text+" key="+SifreTx;
             islem.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             islem.Start();
-            islem.Close();
             if (OnOffBt.Content.ToString() == "Başlat")
             {
                 baslat.StartInfo.FileName = "cmd.exe";
@@ -146,6 +146,32 @@ namespace KzHotspot
             tasi.StartInfo.Arguments = "/C XCOPY Temp\\* /y";
             tasi.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
             tasi.Start();
+        }
+
+        private void KontrolBt_OnClick(object sender, RoutedEventArgs e)
+        {
+            var kontrolc = "Hosted network supported  : Yes";
+            Process kontrol = new Process();
+            kontrol.StartInfo.UseShellExecute = false;
+            kontrol.StartInfo.RedirectStandardOutput = true;
+            kontrol.StartInfo.FileName = "cmd.exe";
+            kontrol.StartInfo.Arguments = "/C netsh wlan show drivers";
+            kontrol.Start();
+            string cikti = kontrol.StandardOutput.ReadToEnd();
+            kontrol.WaitForExit();
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(cikti, kontrolc))
+            {
+                this.ShowMessageAsync("Bilgi", "Sistem Uyumlu");
+                KontrolTx.Text = "Uyumlu";
+                KontrolTx.Foreground = Brushes.Green;
+            }
+            else
+            {
+                this.ShowMessageAsync("Bilgi", "Sistem Uyumsuz");
+                KontrolTx.Text = "Uyumsuz";
+                KontrolTx.Foreground = Brushes.Red;
+            }
         }
     }
 
