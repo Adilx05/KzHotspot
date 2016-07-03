@@ -98,7 +98,7 @@ namespace KzHotspot
             try
             {
                 var guncelleme = wc.DownloadString("https://raw.githubusercontent.com/Adilx05/KzHotspot/master/version.txt");
-                if (guncelleme != "102")
+                if (guncelleme != "103")
                 {
                     using (var client = new WebClient())
                     {
